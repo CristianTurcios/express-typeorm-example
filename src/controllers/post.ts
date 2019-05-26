@@ -14,7 +14,6 @@ export async function post(request: Request, response: Response) {
     const newPost = postRepository.create(request.body);
 
     await postRepository.save(newPost);
-
     response.send(newPost);
 }
 
@@ -35,6 +34,7 @@ export async function getOne(request: Request, response: Response) {
         response.end();
         return;
     }
+
     response.send(post);
 }
 
@@ -58,7 +58,6 @@ export async function put(request: Request, response: Response) {
     post.categories = request.body.categories || post.categories;
 
     await postRepository.save(post);
-
     response.send(post);
 }
 
@@ -74,6 +73,5 @@ export async function remove(request: Request, response: Response) {
     }
 
     await postRepository.remove(post);
-
     response.send(post);
 }

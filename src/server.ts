@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {createConnection} from 'typeorm';
+import { createConnection } from 'typeorm';
 import app from './app';
 
 import { config } from './config';

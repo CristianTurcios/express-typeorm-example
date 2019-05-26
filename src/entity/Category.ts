@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from './Post';
 
 @Entity()

@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {Category} from './Category';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from './Category';
 
 @Entity()
 export class Post {

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { config } from '../config';
 
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {

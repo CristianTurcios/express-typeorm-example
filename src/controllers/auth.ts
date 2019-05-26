@@ -33,6 +33,7 @@ export async function login(request: Request, response: Response) {
         config.JWT,
         { expiresIn: '2h' },
     );
+
     response.send(token);
 }
 

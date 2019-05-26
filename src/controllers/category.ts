@@ -1,20 +1,17 @@
-import {Request, Response} from 'express';
-import {getManager} from 'typeorm';
-import {Category} from '../entity/Category';
+import { Request, Response } from 'express';
+import { getManager } from 'typeorm';
+import { Category } from '../entity/Category';
 
 export async function post(request: Request, response: Response) {
     const categoryRepository = getManager().getRepository(Category);
     const newCategory = categoryRepository.create(request.body);
-
     await categoryRepository.save(newCategory);
-
     response.send(newCategory);
 }
 
 export async function getAll(request: Request, response: Response) {
     const categoryRepository = getManager().getRepository(Category);
     const categories = await categoryRepository.find( { relations: ['posts'] });
-
     response.send(categories);
 }
 
@@ -44,9 +41,7 @@ export async function put(request: Request, response: Response) {
     }
 
     category.name = request.body.name || category.name;
-
     await categoryRepository.save(category);
-
     response.send(category);
 }
 
@@ -62,6 +57,5 @@ export async function remove(request: Request, response: Response) {
     }
 
     await categoryRepository.remove(category);
-
     response.send(category);
 }

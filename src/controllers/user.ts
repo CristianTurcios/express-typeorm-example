@@ -36,10 +36,11 @@ export async function post(request: Request, response: Response) {
     const userRepository = getManager().getRepository(User);
     try {
         await userRepository.save(user);
-    } catch (e) {
+    } catch (error) {
         response.status(409).send('username already in use');
         return;
     }
+
     response.status(201).send('User created');
 }
 
@@ -66,10 +67,11 @@ export async function put(request: Request, response: Response) {
 
     try {
         await userRepository.save(user);
-    } catch (e) {
+    } catch (error) {
         response.status(409).send('username already in use');
         return;
     }
+
     response.status(204).send();
 }
 
@@ -85,6 +87,7 @@ export async function remove(request: Request, response: Response) {
         response.status(404).send('User not found');
         return;
     }
+
     userRepository.delete(id);
     response.status(204).send();
 }

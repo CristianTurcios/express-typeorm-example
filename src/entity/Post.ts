@@ -1,3 +1,4 @@
+import { IsNotEmpty } from 'class-validator';
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Category} from './Category';
 
@@ -5,15 +6,17 @@ import {Category} from './Category';
 export class Post {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Column()
-    title: string;
+    @IsNotEmpty()
+    public title: string;
 
     @Column('text')
-    text: string;
+    @IsNotEmpty()
+    public text: string;
 
-    @ManyToMany(type => Category, category => category.posts)
+    @ManyToMany((type) => Category, (category) => category.posts)
     @JoinTable()
-    categories: Category[];
+    public categories: Category[];
 }

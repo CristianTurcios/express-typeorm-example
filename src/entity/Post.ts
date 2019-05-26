@@ -1,5 +1,5 @@
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Category} from "./Category";
+import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Category} from './Category';
 
 @Entity()
 export class Post {
@@ -10,7 +10,7 @@ export class Post {
     @Column()
     title: string;
 
-    @Column("text")
+    @Column('text')
     text: string;
 
     @ManyToMany(type => Category, category => category.posts)

@@ -16,7 +16,7 @@ import {
 
 app.get('/', (req, res) => {
     res.send({
-        liu: 'Laureate International Universities'
+        liu: 'Laureate International Universities',
     });
 });
 

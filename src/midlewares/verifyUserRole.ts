@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
 
-// Maybe in the future a user can have multiple roles, for that reason accept an array
 export const verifyUserRole = (roles: string[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         const id = res.locals.jwtPayload.userId;

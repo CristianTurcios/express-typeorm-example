@@ -2,12 +2,15 @@ import { Request, Response } from 'express';
 import { getManager } from 'typeorm';
 import { Category } from '../entity/Category';
 import { Post } from '../entity/Post';
+import { createOrUpdatePostValidation } from './validations/postValidations';
 
 export async function post(request: Request, response: Response) {
+    const { error } = createOrUpdatePostValidation(request.body);
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
+
     const postRepository = getManager().getRepository(Post);
     const categoryRepository = getManager().getRepository(Category);
     const categories = await categoryRepository.findByIds(request.body.categories);
-    console.log(categories);
 
     request.body.categories = categories;
 
@@ -39,6 +42,9 @@ export async function getOne(request: Request, response: Response) {
 }
 
 export async function put(request: Request, response: Response) {
+    const { error } = createOrUpdatePostValidation(request.body);
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
+
     const postRepository = getManager().getRepository(Post);
     const categoryRepository = getManager().getRepository(Category);
 

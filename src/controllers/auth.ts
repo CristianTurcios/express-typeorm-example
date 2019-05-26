@@ -4,14 +4,13 @@ import jwt from 'jsonwebtoken';
 import { getManager } from 'typeorm';
 import { config } from '../config';
 import { User } from '../entity/User';
+import { changePasswordValidation, loginValidation} from './validations/authValidations';
 
 export async function login(request: Request, response: Response) {
-    console.log('request.body', request.body);
     const { username, password } = request.body;
+    const { error } = loginValidation(request.body);
 
-    if (!(username && password)) {
-        response.status(400).send();
-    }
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
 
     const userRepository = getManager().getRepository(User);
 
@@ -40,6 +39,11 @@ export async function login(request: Request, response: Response) {
 export async function changePassword(request: Request, response: Response) {
     const id = response.locals.jwtPayload.userId;
     const { oldPassword, newPassword } = request.body;
+    const { error } = changePasswordValidation(request.body);
+
+    if (error) {
+        return response.status(400).send({ error: error.details[0].message });
+    }
 
     if (!(oldPassword && newPassword)) {
         response.status(400).send();

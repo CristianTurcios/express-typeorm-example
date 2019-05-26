@@ -1,8 +1,12 @@
 import { Request, Response } from 'express';
 import { getManager } from 'typeorm';
 import { Category } from '../entity/Category';
+import { createOrUpdateCategoryValidation } from './validations/categoryValidations';
 
 export async function post(request: Request, response: Response) {
+    const { error } = createOrUpdateCategoryValidation(request.body);
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
+
     const categoryRepository = getManager().getRepository(Category);
     const newCategory = categoryRepository.create(request.body);
     await categoryRepository.save(newCategory);
@@ -30,6 +34,9 @@ export async function getOne(request: Request, response: Response) {
 }
 
 export async function put(request: Request, response: Response) {
+    const { error } = createOrUpdateCategoryValidation(request.body);
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
+
     const categoryRepository = getManager().getRepository(Category);
     const category = await categoryRepository.findOne(request.params.id);
 

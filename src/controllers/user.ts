@@ -2,6 +2,7 @@ import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { getManager } from 'typeorm';
 import { User } from '../entity/User';
+import { createUser, updateUser } from './validations/userValidations';
 
 export async function getAll(request: Request, response: Response) {
     const userRepository = getManager().getRepository(User);
@@ -21,6 +22,10 @@ export async function getOne(request: Request, response: Response) {
 
 export async function post(request: Request, response: Response) {
     const { username, password, role } = request.body;
+
+    const { error } = createUser(request.body);
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
+
     const user = new User();
     user.username = username;
     user.password = password;
@@ -47,6 +52,9 @@ export async function post(request: Request, response: Response) {
 export async function put(request: Request, response: Response) {
     const id = request.params.id;
     const { username, role } = request.body;
+
+    const { error } = updateUser(request.body);
+    if (error) { return response.status(400).send({ error: error.details[0].message }); }
 
     const userRepository = getManager().getRepository(User);
     let user;
@@ -76,7 +84,6 @@ export async function put(request: Request, response: Response) {
 }
 
 export async function remove(request: Request, response: Response) {
-    // Get the ID from the url
     const id = request.params.id;
 
     const userRepository = getManager().getRepository(User);

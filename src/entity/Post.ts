@@ -16,5 +16,4 @@ export class Post {
     @ManyToMany(type => Category, category => category.posts)
     @JoinTable()
     categories: Category[];
-
 }

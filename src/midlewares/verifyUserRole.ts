@@ -15,10 +15,10 @@ export const verifyUserRole = (roles: string[]) => {
         }
 
         console.log('user role', user.role);
-        // if (roles.indexOf(user.role) > -1) {
+        if (roles.indexOf(user.role) > -1) {
             next();
-        // } else {
-            // res.status(401).send();
-        // }
+        } else {
+            res.status(401).send();
+        }
     };
 };

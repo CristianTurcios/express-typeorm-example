@@ -14,5 +14,5 @@ createConnection({
     synchronize: true,
     type: 'sqlite',
 }).then((connection) => {
-    app.listen(config.PORT, () => console.log('Example app listening on port 3000!'));
+    app.listen(config.PORT, () => console.log(`Example app listening on port ${config.PORT}!`));
 }).catch((error) => console.log(error));

@@ -5,5 +5,5 @@ interface ProjectConfig {
 
 export const config: ProjectConfig = {
     JWT: 'amazingSecretKeyHere',
-    PORT: process.env.PORT || '3000',
+    PORT: process.env.PORT || '1337',
 };

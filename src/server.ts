@@ -10,9 +10,16 @@ createConnection({
     entities: [
         __dirname + '/entity/*',
     ],
+    host: 'test92.database.windows.net',
     logging: false,
+    options: {
+        encrypt : true,
+    },
+    password: 'Dana250112',
+    port: 1433,
     synchronize: true,
-    type: 'sqlite',
+    type: 'mssql',
+    username: 'test92',
 }).then((connection) => {
     app.listen(config.PORT, () => console.log(`Example app listening on port ${config.PORT}!`));
 }).catch((error) => console.log(error));

@@ -12,6 +12,5 @@ export class CreateAdminUser1547919837483 implements MigrationInterface {
         await userRepository.save(user);
     }
 
-    // tslint:disable-next-line:no-empty
     public async down(queryRunner: QueryRunner): Promise<any> {}
 }

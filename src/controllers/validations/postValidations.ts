@@ -5,9 +5,9 @@ import * as Joi from '@hapi/joi';
 export const createOrUpdatePostValidation = (data: object) => {
     const schema = {
         categories: Joi.string().required(),
+        id: Joi.number().positive().allow(null).required(),
         text: Joi.string().required(),
         title: Joi.string().required(),
-
     };
     return Joi.validate(data, schema);
 };

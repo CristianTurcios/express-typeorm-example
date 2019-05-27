@@ -44,7 +44,7 @@ app.delete('/category/:id', [verifyToken, verifyUserRole(['Admin', 'Editor'])], 
 
 // Post
 app.post('/post', [verifyToken, verifyUserRole(['Admin', 'Editor'])], createPost);
-app.get('/post', [verifyToken], getPosts);
+app.get('/post', [verifyToken, verifyUserRole(['Admin', 'Editor', 'Viewer'])], getPosts);
 app.get('/post/:id', [verifyToken, verifyUserRole(['Admin', 'Editor', 'Viewer'])], getPost);
 app.put('/post/:id', [verifyToken, verifyUserRole(['Admin', 'Editor'])], updatePost);
 app.delete('/post/:id', [verifyToken, verifyUserRole(['Admin', 'Editor'])], deletePost);

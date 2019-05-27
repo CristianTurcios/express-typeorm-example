@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Category } from './Category';
 
 @Entity()
@@ -17,6 +17,5 @@ export class Post {
     public text: string;
 
     @ManyToMany((type) => Category, (category) => category.posts)
-    @JoinTable()
     public categories: Category[];
 }

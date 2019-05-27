@@ -15,8 +15,9 @@ export async function getOne(request: Request, response: Response) {
     const userRepository = getManager().getRepository(User);
     try {
         const user = await userRepository.findOneOrFail(id, {select: ['id', 'username', 'role']});
+        response.send(user);
     } catch (error) {
-        response.status(404).send('Sorry, User not found');
+        response.status(404).send({data: 'Sorry, User not found'});
     }
 }
 
@@ -42,11 +43,11 @@ export async function post(request: Request, response: Response) {
     try {
         await userRepository.save(user);
     } catch (error) {
-        response.status(409).send('username already in use');
+        response.status(409).send({data: 'username already in use'});
         return;
     }
 
-    response.status(201).send('User created');
+    response.status(201).send({data: 'User created'});
 }
 
 export async function put(request: Request, response: Response) {
@@ -61,7 +62,7 @@ export async function put(request: Request, response: Response) {
     try {
         user = await userRepository.findOneOrFail(id);
     } catch (error) {
-        response.status(404).send('User not found');
+        response.status(404).send({data: 'User not found'});
         return;
     }
 
@@ -76,7 +77,7 @@ export async function put(request: Request, response: Response) {
     try {
         await userRepository.save(user);
     } catch (error) {
-        response.status(409).send('username already in use');
+        response.status(409).send({data: 'username already in use'});
         return;
     }
 
@@ -91,7 +92,7 @@ export async function remove(request: Request, response: Response) {
     try {
         user = await userRepository.findOneOrFail(id);
     } catch (error) {
-        response.status(404).send('User not found');
+        response.status(404).send({data: 'User not found'});
         return;
     }
 

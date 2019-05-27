@@ -33,7 +33,7 @@ export async function login(request: Request, response: Response) {
         { expiresIn: '2h' },
     );
 
-    response.send(token);
+    response.send({token});
 }
 
 export async function changePassword(request: Request, response: Response) {

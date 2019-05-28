@@ -5,10 +5,20 @@ import * as Joi from '@hapi/joi';
 export const loginValidation = (data: object) => {
     const schema = {
         password: Joi.string().min(4).max(100).required(),
-        username: Joi.string().min(4).max(20).required(),
+        username: Joi.string().min(4).max(60).required(),
     };
     return Joi.validate(data, schema);
-}
+};
+
+// Social User Validation
+export const socialUserValidation = (data: object) => {
+    const schema = {
+        provider: Joi.string().min(4).max(60).required(),
+        role: Joi.string().required(),
+        username: Joi.string().min(4).max(60).required(),
+    };
+    return Joi.validate(data, schema);
+};
 
 // change password Validation
 export const changePasswordValidation = (data: object) => {

@@ -23,7 +23,7 @@ import {
     remove as deleteUser,
 } from './controllers/user';
 
-import { changePassword, login } from './controllers/auth';
+import { changePassword, login, loginSocialUser } from './controllers/auth';
 import { verifyToken } from './midlewares/verifyToken';
 import { verifyUserRole } from './midlewares/verifyUserRole';
 
@@ -58,4 +58,5 @@ app.delete('/user/:id', [verifyToken, verifyUserRole(['Admin'])], deleteUser);
 
 // // Auth
 app.post('/login', login);
+app.post('/loginSocialUser', loginSocialUser);
 app.get('/change-password', [verifyToken], changePassword);

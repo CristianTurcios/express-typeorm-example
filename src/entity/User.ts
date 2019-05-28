@@ -9,7 +9,7 @@ export class User {
     public id: number;
 
     @Column()
-    @Length(4, 20)
+    @Length(4, 60)
     public username: string;
 
     @Column()

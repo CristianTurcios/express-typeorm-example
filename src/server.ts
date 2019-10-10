@@ -15,7 +15,7 @@ createConnection({
     options: {
         encrypt : true,
     },
-    password: 'Dana250112',
+    password: '',
     port: 1433,
     synchronize: true,
     type: 'mssql',
